@@ -1,0 +1,15 @@
+https://realpython.com/python-speech-recognition/
+
+https://pypi.org/project/SpeechRecognition/
+
+https://chatbotsmagazine.com/delbot-nlp-python-bot-1a46d865e38b 
+
+https://pypi.org/project/SpeechRecognition/
+
+https://pythonspot.com/speech-recognition-using-google-speech-api/
+
+https://www.google.com/intl/en/chrome/demos/speech.html
+
+https://github.com/topics/jarvis?l=python
+
+https://dzone.com/articles/nlp-tutorial-using-python-nltk-simple-examples

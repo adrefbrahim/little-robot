@@ -10,7 +10,9 @@ import os
 import sys
 from gtts import gTTS
 import pyttsx3 
+#import nltk
 from nltk.tokenize import word_tokenize
+#nltk.download('punkt')
 
 #
 #r = sr.Recognizer()
@@ -20,14 +22,33 @@ from nltk.tokenize import word_tokenize
 #    audio = r.listen(source)
 #    print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
 
-def commandProcessing():
+def commandProcessing(command, commandType):
     "here we wil use nltk for tokenizing audio and get the details of command"
-    
-    pass
-
-
-
-
+    if commandType == "welcome":
+        response("hello, Mr. brahim i m your robot what i can do for you ?")
+    elif commandType == "move": 
+        words = word_tokenize(command)
+        number = [s for s in words if s.isnumeric()]
+        responseString = "Ok, I move " + number[0] + " cm forward"
+        response(responseString)
+        print("A:", number[0])
+    elif commandType == "back": 
+        words = word_tokenize(command)
+        number = [s for s in words if s.isnumeric()]
+        responseString = "Ok, I move " + number[0] + " cm to the back"
+        response(responseString)
+        print("R:", number[0])
+    elif commandType == "rotate": 
+        words = word_tokenize(command)
+        number = [s for s in words if s.isnumeric()]
+        responseString = "Ok, I rotate " + number[0] + " degrees"
+        response(responseString)
+        print("Ro:", number[0])
+    elif commandType == "shutdown": 
+        response("Bye bye Mr. brahim. have a nice day")
+        sys.exit()
+    else:
+        pass
 
 
 
@@ -45,9 +66,9 @@ def response(audio):
     
     voices = engine.getProperty('voices')       
     engine.setProperty('voice', voices[1].id) 
-    
     engine.say(audio)
     engine.runAndWait()
+    
 def myCommand():
     "listens for commands"
     r = sr.Recognizer()
@@ -67,15 +88,16 @@ def myCommand():
 
 def littleRebot(command): 
     "if statements for executing commands"
-    if "hello" in command:
-        response("Hello, brahim i m your rebot what i can do for you")
-    elif "f***" in command:
-        response("what are you saying si brahim shame on you")
-    elif "move" or "moving" in command:
-        response("OK, I will move")
+    if "little robot" in command:
+        commandProcessing(command, "welcome")
+    elif "move" in command:
+        commandProcessing(command, "move")
+    elif "back" in command:
+        commandProcessing(command, "back")
+    elif "rotate" in command:
+        commandProcessing(command, "rotate")
     elif "shut down" in command: 
-        response("Bye bye si brahim. have a nice day")
-        sys.exit()
+        commandProcessing(command, "shutdoawn")
 
 while True: 
     littleRebot(myCommand())

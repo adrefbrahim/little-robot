@@ -10,6 +10,8 @@ import os
 import sys
 from gtts import gTTS
 import pyttsx3 
+from nltk.tokenize import word_tokenize
+
 #
 #r = sr.Recognizer()
 #with sr.Microphone() as source:
@@ -17,6 +19,17 @@ import pyttsx3
 #    r.adjust_for_ambient_noise(source)
 #    audio = r.listen(source)
 #    print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
+
+def commandProcessing():
+    "here we wil use nltk for tokenizing audio and get the details of command"
+    
+    pass
+
+
+
+
+
+
 
 def response(audio):
     "speaks audio passed as argument"
@@ -40,8 +53,8 @@ def myCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print('Say something...')
-        #r.pause_threshold = 1
-        #r.adjust_for_ambient_noise(source, duration=1)
+        r.pause_threshold = 1
+        r.adjust_for_ambient_noise(source, duration=1)
         audio = r.listen(source)
     try:
         command = r.recognize_google(audio).lower()
@@ -56,8 +69,10 @@ def littleRebot(command):
     "if statements for executing commands"
     if "hello" in command:
         response("Hello, brahim i m your rebot what i can do for you")
-    elif "fuck" in command:
+    elif "f***" in command:
         response("what are you saying si brahim shame on you")
+    elif "move" or "moving" in command:
+        response("OK, I will move")
     elif "shut down" in command: 
         response("Bye bye si brahim. have a nice day")
         sys.exit()
